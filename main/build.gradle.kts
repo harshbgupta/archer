@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.hiltLibrary)
     alias(libs.plugins.kotlinParcelize)
 }
-apply(from = "${rootProject.projectDir}/common.gradle.kts")
+apply(from = "${rootProject.projectDir}/common.gradle")
 
 android {
     namespace = "co.si.main"
@@ -61,60 +61,6 @@ android {
 }
 
 dependencies {
-    //test
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-
-    //core
-    implementation(libs.fragment.ktx)
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-
-    //networking retrofit
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.gson)
-    implementation(libs.okhttp)
-    implementation(libs.okhttp.logging)
-//    implementation(libs.chucker)
-//    implementation(libs.chucker.no.op)
-
-    //common
-    implementation(libs.timber.logging)
-    implementation(libs.leakCanary)
-
-    //livedata & viewmodel
-    implementation(libs.lifecycle.viewmodel)
-    implementation(libs.lifecycle.livedata)
-    implementation(libs.lifecycle.common)
-
-    //paging3
-    implementation(libs.paging3)
-
-    //navigation
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui)
-
-    //hilt
-    implementation(libs.hilt.dagger)
-    kapt(libs.hilt.dagger.compiler)
-
-    //size
-    implementation(libs.size.sdp)
-    implementation(libs.size.ssp)
-
-    //Image loading library Coil and Glide
-    implementation(libs.coil)
-    implementation(libs.coil.svg)
-    implementation(libs.coil.gif)
-    implementation(libs.glide)
-
-    //firebase
-    implementation(libs.firebase.messaging.ktx)
-
     //project
     implementation(project(":kernel"))
 }

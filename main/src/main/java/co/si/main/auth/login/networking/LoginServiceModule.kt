@@ -26,6 +26,6 @@ object LoginServiceModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(): LoginRepository =
-        LoginRepository()
+    fun provideLoginRepository(api: LoginApi): LoginRepository =
+        LoginRepository(api)
 }

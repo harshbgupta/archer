@@ -13,9 +13,7 @@ import javax.inject.Inject
  * @author Mr. Lucifer
  * @since September 08, 2021
  */
-class LoginRepository @Inject constructor() : NetworkRepository() {
-    @Inject
-    lateinit var api: LoginApi
+class LoginRepository @Inject constructor(val api: LoginApi) : NetworkRepository() {
 
 
     suspend fun sendOtp(req: ReqSendOtp) =

@@ -1,3 +1,12 @@
+Purpose this repo
+This is basic android architecture to build new app from scratch based on following
+1. kotlin
+2. gradle.kts
+3. MVVM Framework
+4. SOLID Principle
+5. Multi Module
+
+Some basic steps to set up some lib/features
 Basic Setup
 
 1. Implement Hilt

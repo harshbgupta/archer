@@ -34,7 +34,7 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
     // Setting Mock Demo
     ///////////////////////////////////////////////////////////////////////////
     private fun sendOtp() = viewModelScope.launch {
-        Timber.d("callMockAPI mock api called")
+        Timber.d("callMockAPI mock api otp called")
         callAPIAndPreprocessResponse({
             repo.sendOtp(
                 ReqSendOtp(
@@ -44,19 +44,17 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
                 )
             )
         }) { state ->
-            Timber.d("callMockAPI mock api state ${toJsonString(state)}")
-            Timber.d("callMockAPI ${toJsonString(state)}")
             when {
                 state is ResponseState.LoadingState -> {
                     showLoader()
                 }
 
                 state is ResponseState.SuccessState -> {
-                    Timber.d("callMockAPI mock api SuccessState data ${toJsonString(state.res.data)}")
+                    Timber.d("callMockAPI mock api otp SuccessState data ${toJsonString(state.res.data)}")
                 }
 
                 state is ResponseState.ErrorState -> {
-                    Timber.d("callMockAPI mock api ErrorState message ${toJsonString(state.message)}")
+                    Timber.d("callMockAPI mock api otp ErrorState message ${toJsonString(state.message)}")
                     hideLoader()
                     showSnackbarError(state.message)
                 }

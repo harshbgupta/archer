@@ -4,8 +4,6 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import corp.hell.kernel.BuildConfig
 import corp.hell.kernel.parent.sup.SuperActivity
-import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 

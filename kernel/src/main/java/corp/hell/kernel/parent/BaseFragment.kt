@@ -110,7 +110,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : BaseViewModel>(private val in
      */
     private fun checkAppVersion() {
         try {
-            //mVersionName?.let { requireContext().versionChecker(it) }
+//            mVersionName?.let { requireContext().versionChecker(it) }
         } catch (e: Throwable) {
             e.printStackTrace()
         }
