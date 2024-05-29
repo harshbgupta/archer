@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hiltLibrary)
     alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.navSafeArgs)
 }
 apply(from = "${rootProject.projectDir}/common.gradle")
 

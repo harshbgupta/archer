@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.hiltLibrary)
     alias(libs.plugins.kotlinParcelize)
+    alias(libs.plugins.navSafeArgs)
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.googleServices)
 }

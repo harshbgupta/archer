@@ -41,6 +41,7 @@ firebaseAnalyticsKtx = "22.0.0"
 #Plugin Version
 agp = "8.3.2"
 kotlin = "1.9.0"
+navArgs = "2.7.7"
 googleService = "4.4.1"
 crashlyticsPlugin = "3.0.1"
 ####################################################################################################
@@ -110,6 +111,7 @@ jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "k
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 hiltLibrary = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlinParcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
+navSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navArgs" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleService" }
 crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlyticsPlugin" }
 

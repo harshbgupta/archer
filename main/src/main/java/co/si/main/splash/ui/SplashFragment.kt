@@ -4,6 +4,7 @@ import android.os.Handler
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import co.si.core.utils.closeKeyboard
 import co.si.main.R
 import co.si.main.databinding.SplashFragmentBinding
@@ -21,6 +22,7 @@ class SplashFragment :
 
     override val viewModel by viewModels<SplashViewModel>()
     private val splashTimeMillis = 2000L
+    val args by navArgs<SplashFragmentArgs>()
 
     override fun onPostCreateView() {
         super.onPostCreateView()
@@ -100,6 +102,7 @@ class SplashFragment :
     }
 
     private fun callLoginFragment() {
-        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        viewModel.navigateToScreen(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
+//        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
     }
 }

@@ -36,7 +36,7 @@ object AppData {
     var mVersionCode: Int? = null
 
     @Volatile
-    var mLanguage: String? = null
+    var mLanguage: String? = "en"
 }
 
 
