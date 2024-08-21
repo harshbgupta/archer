@@ -1,4 +1,4 @@
-package corp.hell.kernel.z.data
+package co.si.main.z.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

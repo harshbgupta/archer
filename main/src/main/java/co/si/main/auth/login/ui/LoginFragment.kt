@@ -41,16 +41,6 @@ class LoginFragment :
     /**
      * Life Cycle Method
      */
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = LoginFragmentBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    /**
-     * Life Cycle Method
-     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setClickListener()
@@ -81,7 +71,7 @@ class LoginFragment :
                     val email = binding.email.text.toString()
                     val password = binding.password.text.toString()
                     if (!email.isNullOrEmpty() && !password.isNullOrEmpty()) {
-                        viewModel.callPasswordVerifyAPI(email, password)
+//                        viewModel.callPasswordVerifyAPI(email, password)
                     } else {
                         viewModel.showSnackbarError(getString(R.string.email_password_not_entered))
                     }

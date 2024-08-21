@@ -32,6 +32,8 @@ class App : Application() {
             FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
         }
         mPackageName = applicationContext.packageName
+        Timber.d("packageName: $mPackageName")
+        Timber.d("packageName applicationId: ${BuildConfig.APPLICATION_ID}")
 //        createNotificationChannel()
         try {
             val pInfo = this.packageManager.getPackageInfo(packageName, 0)

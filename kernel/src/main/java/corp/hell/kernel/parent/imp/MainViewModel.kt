@@ -12,8 +12,7 @@ import javax.inject.Inject
  * Right now, the progress bar in the main activity shall be used across all the fragments whenever a loader is required
  */
 @HiltViewModel
-class MainViewModel @Inject constructor(): ViewModel() {
-
-    val showProgress : MutableStateFlow<Boolean> = MutableStateFlow(false)
+class MainViewModel @Inject constructor() : ViewModel() {
+    val showProgress: LiveEvent<Boolean> = LiveEvent()
     val showSnackbar: LiveEvent<SnackbarDTO> = LiveEvent()
 }

@@ -1,6 +1,6 @@
-package corp.hell.kernel.z.networking
+package co.si.main.z.networking
 
-import corp.hell.kernel.z.data.ReqZ
+import co.si.main.z.data.ReqZ
 import javax.inject.Inject
 
 /**
@@ -9,7 +9,7 @@ import javax.inject.Inject
  * @author Mr. Lucifer
  * @since September 27, 2021
  */
-class ZRepo @Inject constructor(private val service: ZService) {
+class ZRepo @Inject constructor(private val service: ZApi) {
 
     fun methodName1(phone: String) = service.getApi(phone)
 

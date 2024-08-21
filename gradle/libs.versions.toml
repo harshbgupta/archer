@@ -44,6 +44,7 @@ kotlin = "1.9.0"
 navArgs = "2.7.7"
 googleService = "4.4.1"
 crashlyticsPlugin = "3.0.1"
+navigationFragmentKtx = "2.7.7"
 ####################################################################################################
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -102,7 +103,8 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 firebase-messaging-ktx = { group = "com.google.firebase", name = "firebase-messaging-ktx", version.ref = "firebaseMessagingKtx" }
 firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 firebase-crashlytics-ktx = { group = "com.google.firebase", name = "firebase-crashlytics-ktx", version.ref = "firebaseCrashlyticsKtx" } #glide
-firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalyticsKtx" } #glide
+firebase-analytics-ktx = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalyticsKtx" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" } #glide
 
 ####################################################################################################
 [plugins]

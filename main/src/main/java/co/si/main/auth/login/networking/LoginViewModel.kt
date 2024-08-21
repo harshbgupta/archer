@@ -3,6 +3,7 @@ package co.si.main.auth.login.networking
 import ResponseState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import co.si.main.auth.login.data.ReqSendOtp
 import co.si.main.auth.login.data.ReqVerifyPassword
@@ -10,6 +11,7 @@ import co.si.main.auth.login.data.ResVerifyPassword
 import corp.hell.kernel.parent.BaseViewModel
 import corp.hell.kernel.utils.toJsonString
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -25,9 +27,15 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
     @Inject
     lateinit var repo: LoginRepository
     fun init() {
-        sendOtp()
-        callMockAPI()
-        getSmartEysOnBoardingData()
+        showSnackbarSuccess("Hello")
+        viewModelScope.launch {
+            showLoader()
+            delay(5000)
+            hideLoader()
+        }
+//        sendOtp()
+//        callMockAPI()
+//        getSmartEysOnBoardingData()
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -50,11 +58,9 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
                 }
 
                 state is ResponseState.SuccessState -> {
-                    Timber.d("callMockAPI mock api otp SuccessState data ${toJsonString(state.res.data)}")
                 }
 
                 state is ResponseState.ErrorState -> {
-                    Timber.d("callMockAPI mock api otp ErrorState message ${toJsonString(state.message)}")
                     hideLoader()
                     showSnackbarError(state.message)
                 }
@@ -67,19 +73,18 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
     private fun callMockAPI() = viewModelScope.launch {
         Timber.d("callMockAPI mock api called")
         callAPIAndPreprocessResponse({ repo.callMockAPI() }) { state ->
-            Timber.d("callMockAPI mock api state ${toJsonString(state)}")
-            Timber.d("callMockAPI ${toJsonString(state)}")
+            Timber.d("callMockAPI mock api state ${state.toJsonString()}")
             when {
                 state is ResponseState.LoadingState -> {
                     showLoader()
                 }
 
                 state is ResponseState.SuccessState -> {
-                    Timber.d("callMockAPI mock api SuccessState data ${toJsonString(state.res.data)}")
+                    Timber.d("callMockAPI mock api SuccessState data ${state.res.data.toJsonString()}")
                 }
 
                 state is ResponseState.ErrorState -> {
-                    Timber.d("callMockAPI mock api ErrorState message ${toJsonString(state.message)}")
+                    Timber.d("callMockAPI mock api ErrorState message ${state.message}")
                     hideLoader()
                     showSnackbarError(state.message)
                 }
@@ -91,7 +96,7 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
     private fun getSmartEysOnBoardingData() = viewModelScope.launch {
         Timber.d("callMockAPI getSmartEysOnBoardingData api called")
         callAPIAndPreprocessResponse({ repo.getSmartEysOnBoardingData() }) { state ->
-            Timber.d("callMockAPI getSmartEysOnBoardingData ${toJsonString(state)}")
+            Timber.d("callMockAPI getSmartEysOnBoardingData ${state.toJsonString()}")
             when {
                 state is ResponseState.LoadingState -> {
                     showLoader()
@@ -100,21 +105,13 @@ class LoginViewModel @Inject constructor() : BaseViewModel() {
                 state is ResponseState.SuccessState -> {
                     Timber.d(
                         "callMockAPI getSmartEysOnBoardingData SuccessState data ${
-                            toJsonString(
-                                state.res.data
-                            )
+                            state.res.data.toJsonString()
                         }"
                     )
                 }
 
                 state is ResponseState.ErrorState -> {
-                    Timber.d(
-                        "callMockAPI getSmartEysOnBoardingData ErrorState message ${
-                            toJsonString(
-                                state.message
-                            )
-                        }"
-                    )
+                    Timber.d("callMockAPI getSmartEysOnBoardingData ErrorState message ${state.message}")
                     hideLoader()
                     showSnackbarError(state.message)
                 }

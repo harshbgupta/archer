@@ -58,7 +58,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         //collecting and setting values from notification Payload
         val notificationBody = remoteMessage.notification
-        Timber.d("notification -> notification Body ${toJsonString(notificationBody)}")
+        Timber.d("notification -> notification Body ${notificationBody.toJsonString()}")
         notificationBody?.let { body ->
             notificationTitle = body.title
             notificationMessage = body.body
@@ -69,7 +69,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         //it'll be notification data payload value
         //Data Message Starts here
         val data = remoteMessage.data
-        Timber.d("notification -> data payload ${toJsonString(data)}")
+        Timber.d("notification -> data payload ${data.toJsonString()}")
         notificationTitle = data["title"] ?: "Babble Notification"
         notificationMessage = data["message"] ?: ""
         notificationIdForNotification = data["notificationId"]?.toInt() ?: notification_id_default
@@ -101,9 +101,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
         Timber.d(
             "notification -> <<<FINAL>>> remoteMessage featureDataPayload ${
-                toJsonString(
-                    featureDataPayload
-                )
+                featureDataPayload.toJsonString()
             }"
         )
         //Data Message Ends here

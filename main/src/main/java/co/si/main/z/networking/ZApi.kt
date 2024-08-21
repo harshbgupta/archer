@@ -1,6 +1,6 @@
-package corp.hell.kernel.z.networking
+package co.si.main.z.networking
 
-import corp.hell.kernel.z.data.ReqZ
+import co.si.main.z.data.ReqZ
 import com.google.gson.JsonElement
 import retrofit2.Call
 import retrofit2.http.Body
@@ -14,7 +14,7 @@ import retrofit2.http.Path
  * @author Mr. Lucifer
  * @since September 06, 2021
  */
-interface ZService {
+interface ZApi {
 
     @GET("open/sendOtp/{phone}")
     fun getApi(@Path("phone") phone: String): Call<JsonElement>

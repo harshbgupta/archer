@@ -143,12 +143,12 @@ object NotificationHelper {
         val notifyId = payload.notificationId
         Timber.d(
             "notification -> notificationNavigator data payload ${
-                toJsonString(payload)
+                payload.toJsonString()
             }"
         )
         Timber.d("notification -> featureScreen ${payload.featureScreen}")
         if (payload.featureScreen != null) {
-            Timber.d("notification -> chat payload ${toJsonString(payload)}")
+            Timber.d("notification -> chat payload ${payload.toJsonString()}")
             when (payload.featureScreen) {
                 NotificationScreen.CHAT_SCREEN.screen -> {
                     val uri =
@@ -157,7 +157,7 @@ object NotificationHelper {
                 }
 
                 NotificationScreen.CALL_SCREEN.screen -> {
-                    Timber.d("notification -> chat payload ${toJsonString(payload)}")
+                    Timber.d("notification -> chat payload ${payload.toJsonString()}")
                     val uri =
                         Uri.parse("babble.com://co.si.main/chatFragment/${payload.roomId}/${payload.chatType}")
                     findNavController.navigate(uri)

@@ -1,5 +1,7 @@
 package corp.hell.kernel.constants
 
+import corp.hell.kernel.constants.AppData.mPackageName
+
 /**
  * Copyright © 2022 Hell Corporation. All rights reserved.
  *
@@ -17,3 +19,5 @@ package corp.hell.kernel.constants
 // Main Module Constants
 ///////////////////////////////////////////////////////////////////////////
 const val WHATS_APP_MOBILE_NUMBER = "919457825354"
+var fileProvider = "$mPackageName.provider"
+const val QR_KEY_PROFILE_PREFIX = "profile/"

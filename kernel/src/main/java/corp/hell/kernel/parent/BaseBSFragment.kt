@@ -129,10 +129,10 @@ abstract class BaseBSFragment<VB : ViewBinding, VM : BaseViewModel>(private val 
     private fun loaderSetUp() {
         //loader setup
         viewModel.showLoader = {
-            mainViewModel.showProgress.tryEmit(true)
+            mainViewModel.showProgress.postValue(true)
         }
         viewModel.hideLoader = {
-            mainViewModel.showProgress.tryEmit(false)
+            mainViewModel.showProgress.postValue(false)
         }
     }
 

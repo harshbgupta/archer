@@ -51,7 +51,7 @@ abstract class NetworkRepository {
                     // Internet or Server are up
                     emit(ResponseState.LoadingState<T>())
                     val result = tryApiRequest(mockApiEnabled, jsonFilePath ?: "", request)
-                    Timber.e("api => requestAPIFlow result ${toJsonString(result)}")
+                    Timber.d("api => requestAPIFlow result ${result.toJsonString()}")
                     emit(result)
                 } catch (e: Exception) {
                     Timber.e("api => requestAPIFlow catch $e")
@@ -64,7 +64,7 @@ abstract class NetworkRepository {
 
             false -> {
                 //if internet or server is not reachable
-                Timber.e("api => requestAPIFlow No internet or Server")
+                Timber.w("api => requestAPIFlow No internet or Server")
                 emit(ResponseState.ErrorState.NoInternet(message = GENERAL_NO_INTERNET_MESSAGE))
             }
         }
@@ -90,7 +90,7 @@ abstract class NetworkRepository {
             if (res.isSuccessful) {
                 Timber.d("api => tryApiRequest res is successful")
                 val baseResponse: T? = res.body()
-                Timber.d("api => tryApiRequest baseResponse ${toJsonString(baseResponse)}")
+                Timber.d("api => tryApiRequest baseResponse ${baseResponse.toJsonString()}")
                 if (T::class == BaseResponse::class) {
                     val resBase = baseResponse as BaseResponse<*>
 
@@ -110,10 +110,10 @@ abstract class NetworkRepository {
                     ResponseState.ErrorState.BadRequest("Response parsing error")
                 }
             } else {
-                Timber.d("api => tryApiRequest res is not successful")
+                Timber.w("api => tryApiRequest res is not successful")
                 val type = object : TypeToken<ErrorResp>() {}.type
                 var errorResp: ErrorResp? = Gson().fromJson(res.errorBody()!!.charStream(), type)
-                Timber.d("api => tryApiRequest errorResp ${toJsonString(errorResp)}")
+                Timber.d("api => tryApiRequest errorResp ${errorResp.toJsonString()}")
                 handleErrors(statusCode, errorResp?.message)
             }
         } catch (throwable: Throwable) {
@@ -129,19 +129,19 @@ abstract class NetworkRepository {
                 }
 
                 is SocketTimeoutException -> {
-                    Timber.d("api => tryApiRequest SocketTimeoutException exception: $throwable")
+                    Timber.e("api => tryApiRequest SocketTimeoutException exception: $throwable")
                     ResponseState.ErrorState.SocketTimeout<T>(
                         throwable, message = "Time out Exception"
                     )
                 }
 
                 is IOException -> {
-                    Timber.d("api => tryApiRequest IOException exception: $throwable")
+                    Timber.e("api => tryApiRequest IOException exception: $throwable")
                     ResponseState.ErrorState.IO<T>(throwable)
                 }
 
                 else -> {
-                    Timber.d("api => tryApiRequest Unknown exception: $throwable ")
+                    Timber.e("api => tryApiRequest Unknown exception: $throwable ")
                     ResponseState.ErrorState.UnknownError(
                         throwable
                     )
@@ -154,44 +154,44 @@ abstract class NetworkRepository {
         Timber.d("api => inside handleErrors code: $code, message: $message")
         return when (code) {
             "401" -> {
-                Timber.d("api => handleCodeError AUTH_TOKEN_EXPIRED")
+                Timber.w("api => handleCodeError AUTH_TOKEN_EXPIRED")
                 ResponseState.ErrorState.Unauthorized(message ?: UNAUTHORIZED)
             }
 
             "402" -> {
-                Timber.d("api => handleCodeError AUTH_TOKEN_EXPIRED")
+                Timber.w("api => handleCodeError AUTH_TOKEN_EXPIRED")
                 ResponseState.ErrorState.BadRequest(message ?: PAYMENT_REQUIRED)
             }
 
             "400", "403" -> {
-                Timber.d("api => handleCodeError CL_BAD_REQUEST")
+                Timber.w("api => handleCodeError CL_BAD_REQUEST")
                 ResponseState.ErrorState.BadRequest(message ?: BAD_REQUEST)
             }
 
             "404" -> {
-                Timber.d("api => handleCodeError NO_DATA_FOUND")
+                Timber.w("api => handleCodeError NO_DATA_FOUND")
                 ResponseState.ErrorState.NotFound(message ?: NOT_DATA_FOUND)
             }
 
             "405" -> {
-                Timber.d("api => handleCodeError CL_INVALID_CLIENT_TIME")
+                Timber.w("api => handleCodeError CL_INVALID_CLIENT_TIME")
                 ResponseState.ErrorState.MissingData(message ?: DATA_MISSING)
             }
 
             "500", "502", "505" -> {
-                Timber.d("api => handleCodeError SERVER_ERROR")
+                Timber.w("api => handleCodeError SERVER_ERROR")
                 ResponseState.ErrorState.InternalServerError(message ?: INTERNAL_SERVER_ERROR)
             }
             /**
              * TODO -> Add more status code cases and define and return error states accordingly
              */
             null -> {
-                Timber.d("api => handleCodeError code == null")
+                Timber.w("api => handleCodeError code == null")
                 ResponseState.ErrorState.UnknownError(message ?: NO_CODE_ERROR.format(message))
             }
 
             else -> {
-                Timber.d("api => handleCodeError UnknownError ")
+                Timber.w("api => handleCodeError UnknownError ")
                 ResponseState.ErrorState.UnknownError(
                     message ?: UNKNOWN_SERVER_ERROR.format(message)
                 )

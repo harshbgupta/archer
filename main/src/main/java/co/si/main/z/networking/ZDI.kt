@@ -1,4 +1,4 @@
-package corp.hell.kernel.z.networking
+package co.si.main.z.networking
 
 import dagger.Module
 import dagger.Provides
@@ -16,16 +16,16 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object ZSM {
+object ZDI {
 
     @Provides
     @Singleton
-    fun provideService(retrofit: Retrofit): ZService {
-        return retrofit.create(ZService::class.java)
+    fun provideService(retrofit: Retrofit): ZApi {
+        return retrofit.create(ZApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideRepository(service: ZService): ZRepo =
+    fun provideRepository(service: ZApi): ZRepo =
         ZRepo(service)
 }

@@ -8,12 +8,17 @@ plugins {
     alias(libs.plugins.crashlytics)
     alias(libs.plugins.googleServices)
 }
+
+apply(from = "${rootProject.projectDir}/common.gradle")
+
 val appVersionCode = libs.versions.versionMajor.get().toInt() + libs.versions.versionMinor.get()
     .toInt() + libs.versions.versionBuild.get().toInt() + libs.versions.versionPatch.get().toInt()
 val appVersionName = "${libs.versions.versionMajor.get()}.${libs.versions.versionMinor.get()}" +
         ".${libs.versions.versionBuild.get()}.${libs.versions.versionPatch.get()}"
 
-apply(from = "${rootProject.projectDir}/common.gradle")
+//for keystore
+val aliasKey = "archer"
+val password = "1800007007"
 android {
     namespace = "corp.hell.archer"
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -46,23 +51,33 @@ android {
 
     flavorDimensions += "default"
     productFlavors {
-        create("dev") { dimension = "default" }
-        create("qa") { dimension = "default" }
-        create("prod") { dimension = "default" }
+        create("dev") {
+            applicationIdSuffix = ".dev"
+            resValue("string", "app_name", "Archer Dev")
+            dimension = "default"
+        }
+        create("qa") {
+            applicationIdSuffix = ".qa"
+            resValue("string", "app_name", "Archer QA")
+            dimension = "default"
+        }
+        create("prod") {
+            dimension = "default"
+        }
     }
 
     signingConfigs {
         getByName("debug") {
-            storeFile = file("../imp/dev_archer_1800007007.jks")
-            storePassword = "1800007007"
-            keyPassword = "1800007007"
-            keyAlias = "archer"
+            storeFile = file("../imp/debug_archer_1800007007.jks")
+            storePassword = password
+            keyPassword = password
+            keyAlias = aliasKey
         }
         create("release") {
             storeFile = file("../imp/release_archer_1800007007.jks")
-            storePassword = "1800007007"
-            keyPassword = "1800007007"
-            keyAlias = "archer"
+            storePassword = password
+            keyPassword = password
+            keyAlias = aliasKey
         }
     }
 

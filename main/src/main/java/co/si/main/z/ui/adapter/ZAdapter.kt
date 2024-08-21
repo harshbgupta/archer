@@ -1,10 +1,10 @@
-package corp.hell.kernel.z.ui.adapter
+package co.si.main.z.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import corp.hell.kernel.databinding.ZBinding
+import co.si.main.databinding.ZBinding
 import corp.hell.kernel.network.Item
 import corp.hell.kernel.parent.BaseViewHolder
 

@@ -1,11 +1,12 @@
-package corp.hell.kernel.z.networking
+package co.si.main.z.networking
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import corp.hell.kernel.z.data.ResZ
+import co.si.main.z.data.ResZ
 import com.google.gson.Gson
 import com.google.gson.JsonElement
+import corp.hell.kernel.parent.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,7 +20,7 @@ import javax.inject.Inject
  * @since January 14, 2022
  */
 @HiltViewModel
-class ZViewModel @Inject constructor(private val repo: ZRepo) : ViewModel() {
+class ZViewModel @Inject constructor(private val repo: ZRepo) : BaseViewModel() {
 
     ///////////////////////////////////////////////////////////////////////////
     // First APi Demo

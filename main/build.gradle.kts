@@ -64,6 +64,7 @@ android {
 dependencies {
     //project
     implementation(project(":kernel"))
+    implementation(libs.androidx.navigation.fragment.ktx)
 }
 
 // Allow references to generated code

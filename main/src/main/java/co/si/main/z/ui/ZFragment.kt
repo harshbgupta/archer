@@ -1,13 +1,16 @@
-package corp.hell.kernel.z.ui
+package co.si.main.z.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import co.si.core.utils.closeKeyboard
+import co.si.main.databinding.ZBinding
+import co.si.main.z.networking.ZViewModel
 import corp.hell.kernel.parent.sup.SuperFragment
 import corp.hell.kernel.constants.Args.ARG_PARAM1
-import corp.hell.kernel.databinding.ZBinding
+import corp.hell.kernel.parent.BaseFragment
 
 /**
  * A simple [SuperFragment] subclass.
@@ -16,9 +19,9 @@ import corp.hell.kernel.databinding.ZBinding
  * @author Harsh Gupta aka Lucifer 😈
  * @since January 14, 2022
  */
-class ZFragment : SuperFragment(), View.OnClickListener {
+class ZFragment : BaseFragment<ZBinding, ZViewModel>(ZBinding::inflate), View.OnClickListener {
 
-    private lateinit var binding: ZBinding
+    override val viewModel by viewModels<ZViewModel>()
     private var mPhone: String? = null
 
     /**
@@ -29,18 +32,6 @@ class ZFragment : SuperFragment(), View.OnClickListener {
         arguments?.let {
             mPhone = it.getString(ARG_PARAM1, null)
         }
-    }
-
-    /**
-     * Life Cycle Method
-     */
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = ZBinding.inflate(inflater, container, false)
-        return binding.getRoot()
     }
 
     /**
