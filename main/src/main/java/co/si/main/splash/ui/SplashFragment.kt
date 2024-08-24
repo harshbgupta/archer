@@ -3,10 +3,8 @@ package co.si.main.splash.ui
 import android.os.Handler
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import co.si.core.utils.closeKeyboard
-import co.si.main.R
+import corp.hell.kernel.utils.closeKeyboard
 import co.si.main.databinding.SplashFragmentBinding
 import co.si.main.splash.networking.SplashViewModel
 import co.si.main.utils.getPreBasicDataFromDataStoreAndEstablishSocketConnection

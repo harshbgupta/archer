@@ -6,6 +6,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
@@ -16,7 +17,7 @@ import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
-import co.si.core.utils.runOnUiThread
+import corp.hell.kernel.utils.runOnUiThread
 import co.si.main.R
 import co.si.main.landing.MainActivity
 import co.si.main.utils.notification.data.FeatureDataPayload
@@ -151,7 +152,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                             .setAutoCancel(true)
                             .setStyle(NotificationCompat.BigTextStyle())
                             .setContentIntent(getPendingIntent())
-//                            .setLargeIcon(BitmapFactory.decodeResource(resources, co.si.core.R.drawable.ic_app_icon))
+//                            .setLargeIcon(BitmapFactory.decodeResource(resources, corp.hell.kernel.R.drawable.ic_app_icon))
                         if (featureScreenValue != NotificationScreen.CALL_SCREEN.screen) {
                             if (notificationBitmap != null) {
                                 this.setLargeIcon(notificationBitmap).setStyle(

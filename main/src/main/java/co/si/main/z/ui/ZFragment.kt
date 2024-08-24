@@ -1,11 +1,9 @@
 package co.si.main.z.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import co.si.core.utils.closeKeyboard
+import corp.hell.kernel.utils.closeKeyboard
 import co.si.main.databinding.ZBinding
 import co.si.main.z.networking.ZViewModel
 import corp.hell.kernel.parent.sup.SuperFragment

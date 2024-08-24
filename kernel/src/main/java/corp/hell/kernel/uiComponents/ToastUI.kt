@@ -2,7 +2,7 @@ package corp.hell.kernel.uiComponents
 
 import android.widget.Toast
 import androidx.annotation.StringRes
-import co.si.core.utils.runOnUiThread
+import corp.hell.kernel.utils.runOnUiThread
 import corp.hell.kernel.constants.AppData.ctx
 import javax.inject.Singleton
 

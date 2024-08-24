@@ -1,4 +1,4 @@
-package co.si.core.utils
+package corp.hell.kernel.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity

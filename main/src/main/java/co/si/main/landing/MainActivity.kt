@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import co.si.core.utils.genDeviceToken
+import corp.hell.kernel.utils.genDeviceToken
 import co.si.main.R
 import co.si.main.databinding.MainActivityBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -79,8 +79,7 @@ class MainActivity : BaseActivity() {
 
     private fun loaderSetUp() {
         mainViewModel.showProgress.observe(this) { showLoader ->
-           binding.loaderLayout.visibility = if (showLoader) View.VISIBLE else View.GONE
+            binding.loaderLayout.visibility = if (showLoader) View.VISIBLE else View.GONE
         }
     }
-
 }

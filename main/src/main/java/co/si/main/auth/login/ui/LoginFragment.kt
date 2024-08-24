@@ -3,17 +3,15 @@ package co.si.main.auth.login.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import co.si.core.utils.*
 import co.si.main.R
 import co.si.main.auth.login.networking.LoginViewModel
 import co.si.main.databinding.LoginFragmentBinding
 import corp.hell.kernel.parent.BaseFragment
+import corp.hell.kernel.utils.closeKeyboard
 import timber.log.Timber
 
 /**
