@@ -6,12 +6,13 @@ import androidx.activity.viewModels
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import corp.hell.kernel.utils.genDeviceToken
 import co.si.main.R
 import co.si.main.databinding.MainActivityBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import corp.hell.kernel.parent.BaseActivity
 import corp.hell.kernel.parent.imp.MainViewModel
+import corp.hell.kernel.utils.genDeviceToken
+import corp.hell.kernel.utils.setAppThemeLightDarkOrDeviceTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,6 +30,7 @@ class MainActivity : BaseActivity() {
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
         showCrashPopUpListener()
+        setAppThemeLightDarkOrDeviceTheme(followDeviceTheme = false, enableDarkTheme = true)
         setClickListener()
         restOfCoding()
     }

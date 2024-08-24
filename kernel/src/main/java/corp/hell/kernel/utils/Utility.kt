@@ -29,6 +29,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -979,5 +980,26 @@ fun Activity.secureContentFromScreenshotAndScreenRecording() {
             WindowManager.LayoutParams.FLAG_SECURE,
             WindowManager.LayoutParams.FLAG_SECURE
         )
+    }
+}
+
+/**
+ * Set theme for app
+ */
+fun setAppThemeLightDarkOrDeviceTheme(followDeviceTheme: Boolean = true, enableDarkTheme: Boolean = false) {
+    try {
+        if (followDeviceTheme) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
+            }
+        } else {
+            if (enableDarkTheme) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    } catch (e: Throwable) {
+        e.printStackTrace()
     }
 }
