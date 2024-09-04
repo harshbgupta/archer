@@ -1,3 +1,17 @@
+import java.io.FileInputStream
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Properties
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+
+//for keystore
+val aliasKey = keystoreProperties["KEY_ALIAS"] as String
+val passwordKey = keystoreProperties["KEY_PASSWORD"] as String
+val passwordStore = keystoreProperties["STORE_PASSWORD"] as String
+
 plugins {
     kotlin("kapt")
     alias(libs.plugins.androidApplication)
@@ -16,9 +30,6 @@ val appVersionCode = libs.versions.versionMajor.get().toInt() + libs.versions.ve
 val appVersionName = "${libs.versions.versionMajor.get()}.${libs.versions.versionMinor.get()}" +
         ".${libs.versions.versionBuild.get()}.${libs.versions.versionPatch.get()}"
 
-//for keystore
-val aliasKey = "archer"
-val password = "1800007007"
 android {
     namespace = "corp.hell.archer"
     compileSdk = libs.versions.compileSdk.get().toInt()
@@ -52,32 +63,33 @@ android {
     flavorDimensions += "default"
     productFlavors {
         create("dev") {
-            applicationIdSuffix = ".dev"
+//            applicationIdSuffix = ".dev" // create prod folder under app/src and add google-services.json for default `package.dev`
             resValue("string", "app_name", "Archer Dev")
             dimension = "default"
         }
         create("qa") {
-            applicationIdSuffix = ".qa"
+//            applicationIdSuffix = ".qa" // create prod folder under app/src and add google-services.json for default `package.qa`
             resValue("string", "app_name", "Archer QA")
             dimension = "default"
         }
         create("prod") {
+            //create prod folder under app/src and add google-services.json for default `package`
             dimension = "default"
         }
     }
 
     signingConfigs {
         getByName("debug") {
-            storeFile = file("../imp/debug_archer_1800007007.jks")
-            storePassword = password
-            keyPassword = password
+            storeFile = file("../imp/debug.jks")
             keyAlias = aliasKey
+            keyPassword = passwordKey
+            storePassword = passwordStore
         }
         create("release") {
-            storeFile = file("../imp/release_archer_1800007007.jks")
-            storePassword = password
-            keyPassword = password
+            storeFile = file("../imp/release.jks")
             keyAlias = aliasKey
+            keyPassword = passwordKey
+            storePassword = passwordStore
         }
     }
 
@@ -102,8 +114,9 @@ android {
         variant.outputs
             .filterIsInstance<com.android.build.gradle.internal.api.BaseVariantOutputImpl>()
             .forEach {
+                val currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dMMM"))
                 it.outputFileName =
-                    "${variant.name}-v${appVersionName}.apk"
+                    "${aliasKey}_${variant.name}-v${appVersionName}_${currentDate}.apk"
             }
     }
 }
