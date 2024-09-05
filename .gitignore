@@ -21,7 +21,6 @@ app/prod/output-metadata.json
 
 # Maven
 target/
-dist/
 
 
 # Unit test reports
@@ -44,6 +43,9 @@ Thumbs.db
 *.mov
 *.apk
 *.aab
+#some smal but unneccessary files
+*.dm
+*-metadata.json
 
 # JetBrains IDE
 .idea/
